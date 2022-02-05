@@ -1,7 +1,7 @@
 ---
 mysql_port: 3306
-dbname: ecomdb
-dbuser: ecomuser
+dbname: final_projectdb
+dbuser: final_project
 dbpassword: 1234
 httpd_port: 80
 repository: https://github.com/Kamrun-Nahar-Nisha/final2.git

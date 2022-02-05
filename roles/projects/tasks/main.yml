@@ -6,26 +6,6 @@
       - firewalld
     state: installed
 
-    
-- name: Install MariaDB package
-  yum:
-    name:
-    - mariadb-server
-    - MySQL-python
-    state: installed
-
-#- name: Create Mysql configuration file
-#  copy: src=files/my.cnf dest=/etc/my.cnf
-
-- name: Start MariaDB Service
-  service: name=mariadb state=started enabled=yes
-
-- name: Start firewalld
-  service: name=firewalld state=started enabled=yes
-
-- name: insert firewalld rule
-  firewalld: port={{ mysql_port }}/tcp permanent=true state=enabled immediate=yes
-
 - name: Create Application Database
   mysql_db: name={{ dbname }} state=present
 
@@ -41,10 +21,10 @@
   shell: mysql -f < /tmp/db-load-script.sql
           
 
-- name: Install httpd and php
+- name: Install php
   yum:
     name:
-      - httpd
+      #- httpd
       - php
       - php-mysql
     state: present
@@ -52,11 +32,11 @@
 - name: Install web role specific dependencies
   yum: name=git state=installed
 
-- name: Start firewalld
-  service: name=firewalld state=started enabled=yes
+#- name: Start firewalld
+#  service: name=firewalld state=started enabled=yes
 
-- name: insert firewalld rule for httpd
-  firewalld: port={{ httpd_port }}/tcp permanent=true state=enabled immediate=yes
+#- name: insert firewalld rule for httpd
+ # firewalld: port={{ httpd_port }}/tcp permanent=true state=enabled immediate=yes
 
 - name: Set index.php as the default page
   tags: "Set index.php as the default page"
@@ -65,8 +45,8 @@
     regexp: 'DirectoryIndex index.html'
     replace: 'DirectoryIndex index.php'
 
-- name: http service state
-  service: name=httpd state=started enabled=yes
+#- name: http service state
+ # service: name=httpd state=started enabled=yes
   
 - name: Copy the code from repository
   git: repo={{ repository }} dest=/var/www/html/  force=yes

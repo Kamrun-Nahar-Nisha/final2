@@ -16,5 +16,5 @@
     service: name=firewalld state=started enabled=yes
 
   - name: insert firewalld rule
-    firewalld: port={{ mysql_port }}/tcp permanent=true state=enabled immediate=yes
+    firewalld: port=3306/tcp permanent=true state=enabled immediate=yes
 

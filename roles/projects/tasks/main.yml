@@ -30,7 +30,7 @@
   mysql_db: name={{ dbname }} state=present
 
 - name: Create Application DB User
-  mysql_user: name={{ dbuser }} password={{ dbpassword }} priv=*.*:ALL host='192.168.0.105' state=present
+  mysql_user: name={{ dbuser }} password={{ dbpassword }} priv=*.*:ALL host='localhost' state=present
 
 - name: Move db-load-script to db host
   copy:

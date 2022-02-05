@@ -1,7 +1,7 @@
 ---
 mysql_port: 3306
-dbname: finaldb
-dbuser: nisha2
+dbname: ecomdb
+dbuser: ecomuser
 dbpassword: 1234
 httpd_port: 80
 repository: https://github.com/Kamrun-Nahar-Nisha/final2.git
